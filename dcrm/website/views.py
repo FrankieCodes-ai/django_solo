@@ -115,3 +115,8 @@ def delete_record(request, pk):
     messages.success(request, "Your record was deleted!")
     return redirect("dashboard")
 
+#history
+
+def history(request):
+    
+    return render(request,'website/history.html') 

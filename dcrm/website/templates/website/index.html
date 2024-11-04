@@ -1,5 +1,5 @@
 {% extends 'website/base.html'%}
- 
+{% load static %}
 
 {% block content%}
     <br>
@@ -11,16 +11,56 @@
     </div>
 
     <div class="parallax"></div>
+  
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-3">
 
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
+        <img class="card-img-top" src="{% static "images/zooh.jpg" %}" alt="History Image Failed to load">
+
+
         <div class="card-body">
           <h5 class="card-title">Zoo History</h5>
-          <p class="card-text">Ridge Zoo, nestled amidst the rolling hills of Wales, has a rich history that spans over 14 decades. Its origins trace back to 1985, when a visionary group of conservationists and animal enthusiasts envisioned a sanctuar</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <p class="card-text">Ridge Zoo, nestled amidst the rolling hills of Wales, has a rich history that spans over 3 decades. Its origins trace back to 1985, when a visionary group of conservationists and animal enthusiasts envisioned a sanctuary</p>
+          <a href="{% url 'history'%}" class="btn btn-primary">Find Out More</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+
+      <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{% static "images/rev.jpg" %}" alt="Reviews did not load">
+  
+  
+          <div class="card-body">
+            <h5 class="card-title">Zoo Reviews</h5>
+            <p class="card-text">Our zoo being around for such along time has accumluated lots of reviews from the good to the bad here are all of reviews we have recieved</p>
+            <a href="#" class="btn btn-primary">Find Out More</a>
+          </div>
+  
         </div>
       </div>
-            
+
+      <div class="col-md-4 mb-3">
+
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{% static "images/ed.jpg" %}" alt="Educational image">
+    
+    
+            <div class="card-body">
+              <h5 class="card-title">Educational Experiences</h5>
+              <p class="card-text">ready for an extraordinary educational journey at Ridget Zoo! Our dedicated Education Team is here to assist you in crafting an unforgettable school trip or educational visit. Explore captivating options suitable for all ages and abilities, from exciting adventures for Early Years to experiences for Higher Education.
+              <a href="#" class="btn btn-primary">Find Out More</a>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </div>
 
 {% endblock %}
 

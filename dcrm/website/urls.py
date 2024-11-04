@@ -27,6 +27,16 @@ urlpatterns = [
 
     #Delete
     path('delete-record/<int:pk>', views.delete_record, name="delete-record"),
+
+    ################### MY URLS ########################
+
+
+    path('history', views.history ,name="history"),
+  
+    
+   
+
+
 ]
 
 

@@ -11,12 +11,16 @@ body{background-color:grey;}
     background-image: url("../images/zoo.jpg");
   
     /* Set a specific height */
-    min-height: 1000px;
-    min-width: 1400px;
+    min-height: 800px;
+    min-width: 800px;
   
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:contain;
+  }
+
+  .card{
+    border-radius: 16;
   }
