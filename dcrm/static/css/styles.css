@@ -24,3 +24,28 @@ body{background-color:grey;}
   .card{
     border-radius: 16;
   }
+
+  /* Histroy css */
+
+  #zooh{
+    color: aquamarine ;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 70px;
+    
+  }
+
+  #ph1{
+    font-size: 25px;
+    position: fixed;
+    left: 40px;
+    width:950px;
+    
+  }
+
+  #old{
+    height: 300px;
+    width: 700px;
+    position: fixed;
+    right: 150px;
+  }
