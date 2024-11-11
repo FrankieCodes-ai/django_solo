@@ -56,7 +56,7 @@ def my_login(request):
 
 def user_logout(request):
 
-    auth.logout(request.messages.success(request, "Logout success!"))
+    
     return redirect("my-login")
 
 #Dashboard -
@@ -120,3 +120,9 @@ def delete_record(request, pk):
 def history(request):
     
     return render(request,'website/history.html') 
+
+#booking
+
+def booking(request):
+    
+    return render(request,'website/booking.html') 

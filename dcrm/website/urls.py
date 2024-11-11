@@ -32,6 +32,8 @@ urlpatterns = [
 
 
     path('history', views.history ,name="history"),
+
+    path('booking', views.booking ,name="booking"),
   
     
    
