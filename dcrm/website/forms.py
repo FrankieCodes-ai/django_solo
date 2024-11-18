@@ -1,13 +1,12 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
 from django import forms
 from django.forms.widgets import PasswordInput, TextInput
-from .model import Record
-
+from .models import Record, ZooUser
+from .models import hotel_bookings
 class CreateUserForm(UserCreationForm):
 
     class Meta:
-        model=User
+        model=ZooUser
         fields=['username','password1','password2']
 
 class LoginForm(AuthenticationForm):
@@ -28,24 +27,28 @@ class UpdateRecordForm(forms.ModelForm):
 
 from django.db import migrations, models
 
+class Hotel_Booking_Form(forms.ModelForm):
 
-class Migration(migrations.Migration):
+    class Meta:
+        model = hotel_bookings 
 
-    dependencies = [
-        ('website', '0001_initial'),
-    ]
+        fields = {'hotel_date_arrive', 'hotel_date_leave','hotel_adults','hotel_children',
+                  'hotel_total_cost','hotel_points'}
+        
+        labels ={
+            "hotel_booking_date_arrive": 'What Day do you wish to arrive',
+        }
 
-    operations = [
-        migrations.CreateModel(
-            name='hotel_bookings',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('hotel_booking_date', models.DateTimeField()),
-                ('hotel_date_arrive', models.DateTimeField()),
-                ('hotel_date_leave', models.DateTimeField()),
-                ('hotel_adults', models.IntegerField(default=0)),
-                ('hotel_children', models.IntegerField(default=0)),
-                ('hotel_total_cost', models.FloatField(default=0)),
-            ],
-        ),
-    ]
+        widgets = {
+            'hotel_date_arrive': forms.DateInput(attrs={'type':'date'}),
+            'hotel_date_leave': forms.DateInput(attrs={'type':'date'}),
+            'hotel_total_cost': forms.HiddenInput(),
+            'hotel_points': forms.HiddenInput(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args,**kwargs)
+
+
+    
+

@@ -4,8 +4,8 @@ from django.contrib.auth import authenticate
 from django.contrib import messages
 from django.conf import settings
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm, LoginForm, CreateRecordForm, UpdateRecordForm
-from .model import Record
+from .forms import CreateUserForm, LoginForm, CreateRecordForm, UpdateRecordForm, Hotel_Booking_Form
+from .models import Record
 
 
 # Create your views here.
@@ -56,7 +56,6 @@ def my_login(request):
 
 def user_logout(request):
 
-    
     return redirect("my-login")
 
 #Dashboard -
@@ -126,3 +125,53 @@ def history(request):
 def booking(request):
     
     return render(request,'website/booking.html') 
+
+
+
+@login_required(login_url='my-login')
+def hotel(request):
+
+    form = Hotel_Booking_Form()
+
+    if request.method == "POST":
+        updated_request = request.POST.copy()
+        updated_request.update({'hotel_user_id_id': request.user})
+
+        form = Hotel_Booking_Form(updated_request)
+        if form.is_valid():
+            obj = form.save(commit=False)
+
+            arrive = obj.hotel_date_arrive
+            depart = obj.hotel_date_leave
+            result = depart - arrive
+            print ("Number of days ", result.days)
+
+
+            print("Hotel Children", obj.hotel_children)
+
+            hotel_total_cost = int(obj.hotel_adults) * 40 \
+                                + int(obj.hotel_children) * 15
+                                    
+            hotel_total_cost *= int(result.days)
+            print(hotel_total_cost)
+
+            hotel_points = int(hotel_total_cost / 20)
+            print("Hotel Points: ", hotel_points)
+            print("printing booking costs: ", hotel_total_cost)
+
+
+            obj.hotel_points = hotel_points
+            obj.hotel_total_cost = hotel_total_cost
+            obj.hotel_user_id = request.user
+
+            obj.save()
+
+            messages.success(request, "Hotel booked successfully!")
+            return redirect('')
+        else:
+            print("Error with the form")
+            return redirect('hotel')
+    
+    context = {'form': form}
+
+    return render(request, 'website/hotel.html', context=context)
