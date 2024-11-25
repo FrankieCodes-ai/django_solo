@@ -33,7 +33,10 @@ urlpatterns = [
 
     path('history', views.history ,name="history"),
 
-    path('booking', views.booking ,name="booking"),
+    path('booking', views.hotel,name="booking"),
+
+
+
   
     
    
